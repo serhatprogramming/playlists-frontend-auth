@@ -19,5 +19,15 @@ const getPlaylists = async () => {
   return response.data;
 };
 
+const updatePlaylist = async (playlistId, updatedPlaylist) => {
+  const response = await axios.put(`${API_URL}/${playlistId}`, updatedPlaylist);
+  return response.data;
+};
+
 // eslint-disable-next-line import/no-anonymous-default-export
-export default { getPlaylists, setAuthorization, addNewPlaylist };
+export default {
+  getPlaylists,
+  setAuthorization,
+  addNewPlaylist,
+  updatePlaylist,
+};

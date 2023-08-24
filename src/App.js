@@ -90,7 +90,7 @@ const App = () => {
           componentTitle={playlist.name + " by " + playlist.creator}
           key={playlist.id}
         >
-          <Playlist playlist={playlist} />
+          <Playlist playlist={playlist} handleLike={handleLike} />
         </Section>
       ))}
     </>
@@ -162,6 +162,18 @@ const App = () => {
       <button type="submit">Add Playlist</button>
     </form>
   );
+
+  const handleLike = async (id, likes) => {
+    await playlistService.updatePlaylist(id, {
+      likes,
+    });
+
+    setPlaylists(
+      [...playlists].map((playlist) =>
+        playlist.id === id ? { ...playlist, likes } : playlist
+      )
+    );
+  };
 
   return (
     <div>
