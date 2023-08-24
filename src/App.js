@@ -3,6 +3,7 @@ import Playlist from "./components/Playlist";
 import playlistService from "./services/playlistService";
 import loginService from "./services/loginService";
 import Notification from "./components/Notification";
+import Section from "./components/Section";
 import "./App.css";
 
 const App = () => {
@@ -85,7 +86,12 @@ const App = () => {
       <button onClick={handleLogout}>Log Out</button>
       <h3>Playlists</h3>
       {playlists.map((playlist) => (
-        <Playlist key={playlist.id} playlist={playlist} />
+        <Section
+          componentTitle={playlist.name + " by " + playlist.creator}
+          key={playlist.id}
+        >
+          <Playlist playlist={playlist} />
+        </Section>
       ))}
     </>
   );

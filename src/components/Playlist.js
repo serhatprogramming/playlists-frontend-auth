@@ -1,7 +1,14 @@
 const Playlist = ({ playlist }) => {
   return (
     <div>
-      Playlist: {playlist.name}, creator: {playlist.creator}
+      <div>
+        {playlist.name} by {playlist.creator}
+      </div>
+      <div>{playlist.numOfSongs} songs</div>
+      <div>{playlist.likes} likes</div>
+      <div className="playlist-owner">
+        Added by <em>{playlist.user.username}</em>
+      </div>
     </div>
   );
 };
