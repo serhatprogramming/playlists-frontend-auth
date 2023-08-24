@@ -90,7 +90,12 @@ const App = () => {
           componentTitle={playlist.name + " by " + playlist.creator}
           key={playlist.id}
         >
-          <Playlist playlist={playlist} handleLike={handleLike} />
+          <Playlist
+            playlist={playlist}
+            handleLike={handleLike}
+            handleRemove={handleRemove}
+            username={userObject.username}
+          />
         </Section>
       ))}
     </>
@@ -173,6 +178,23 @@ const App = () => {
         playlist.id === id ? { ...playlist, likes } : playlist
       )
     );
+  };
+
+  const handleRemove = async (id) => {
+    try {
+      playlistService.setAuthorization(userObject.token);
+      await playlistService.removePlaylist(id);
+      notify({
+        message: "Delete successfull.",
+        type: "info",
+      });
+      setPlaylists([...playlists].filter((playlist) => playlist.id !== id));
+    } catch (error) {
+      notify({
+        message: `${error.response.data.message}`,
+        type: "warning",
+      });
+    }
   };
 
   return (

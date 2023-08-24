@@ -24,10 +24,19 @@ const updatePlaylist = async (playlistId, updatedPlaylist) => {
   return response.data;
 };
 
+const removePlaylist = async (playlistId) => {
+  const response = await axios.delete(
+    `${API_URL}/${playlistId}`,
+    authorization
+  );
+  return response.data;
+};
+
 // eslint-disable-next-line import/no-anonymous-default-export
 export default {
   getPlaylists,
   setAuthorization,
   addNewPlaylist,
   updatePlaylist,
+  removePlaylist,
 };
